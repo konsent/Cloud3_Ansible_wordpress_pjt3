@@ -1,6 +1,7 @@
 ---
 - name: Set WEB server
   hosts: web
+  tags: web
   roles:
     - { role: apache, tags: apache_web }
     - { role: php, tags: php_web }
@@ -36,6 +37,7 @@
 
 - name: Set DB server
   hosts: db
+  tags: db
   roles:
     - { role: mysql, tags: mysql_db }
   vars:
