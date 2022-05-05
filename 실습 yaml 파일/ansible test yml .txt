@@ -1,0 +1,103 @@
+# Web server playbook
+- name: Web server setting
+  hosts: web
+  tags: web
+  gather_facts: no
+  become: yes
+  vars:
+    pkg_list:
+    - apache2
+    - python3-apt
+    php_list:
+    - php7.4-fpm
+    - php7.4-common
+    - php7.4-mysql
+    - php7.4-xml
+    - php7.4-xmlrpc
+    - php7.4-curl
+    - php7.4-gd
+    - php7.4-imagick
+    - php7.4-cli
+    - php7.4-dev
+    - php7.4-imap
+    - php7.4-mbstring
+    - php7.4-opcache
+    - php7.4-redis
+    - php7.4-soap
+    - php7.4-zip
+  tasks:
+  - name: Install pkg
+    apt:
+      name: "{{ pkg_list }}"
+      state: latest
+      update_cache: yes
+
+  - name: Start apache2
+    service:
+      name: apache2
+      state: started
+      enabled: yes
+
+  - name: Add apt repository
+    ansible.builtin.apt_repository:
+      repo: 'ppa:ondrej/php'
+
+  - name: Upgrade apt
+    apt:
+      upgrade: true
+
+  - name: Install php
+    apt:
+      name: "{{ php_list }}"
+      state: latest
+      update_cache: yes
+
+
+
+# DB
+- name: DB setting
+  hosts: ansi-node2
+  tasks:
+  - apt:
+      name:
+      - python3-pymysql
+      - mysql-server
+      - mysql-client
+      update_cache: yes
+      cache_valid_time: 3600
+      state: latest
+
+  - service:
+      name: mysql
+      state: started
+      enabled: yes
+
+  - mysql_user:
+      name: root
+      password: "dkaghdkagh1."
+      priv: "*.*:ALL,GRANT"
+      host: '%'
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      state: present
+      login_user: root
+      login_password: "dkaghdkagh1."
+
+  - template:
+      src: root_cnf.j2
+      dest: /root/.my.cnf
+      owner: root
+      mode: '0600'
+
+  - lineinfile:
+      path: /etc/mysql/mysql.conf.d/mysqld.cnf
+      regexp: '^bind-address'
+      line: 'bind-address = 0.0.0.0'
+      backup: yes
+    notify:
+      - Restart mysql
+
+  handlers:
+    - name: Restart mysql
+      service:
+        name: mysql
+        state: restarted
