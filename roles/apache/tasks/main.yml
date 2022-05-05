@@ -1,2 +1,21 @@
+# Apache configuration
 ---
-# tasks file for apache
+- name: Re-configure dpkg module before start tasks
+    command: sudo dpkg --configure -a
+
+- name: Upgrade apt-get module
+  apt:
+    upgrade: 'yes'
+
+- name: Install Apache, pymysql and mysql-client module
+  apt:
+    name: "{{ pkg_list }}"
+    state: latest
+    update_cache: yes
+
+- name: Start apache
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+... 

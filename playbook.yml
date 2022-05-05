@@ -1,10 +1,52 @@
 ---
-- name: main server
-  hosts: main
+- name: Set WEB server
+  hosts: web
   roles:
-    - { role: terraform, tags: terraform_main }
-    - { role: apache, tags: apache_main }
-    - { role: firewall, tags: firewall_main }
+    - { role: apache, tags: apache_web }
+    - { role: php, tags: php_web }
+    - { role: mysql, tags: mysql_client }
+    - { role: wordpress, tags: wordpress_web }
+    - { role: firewall, tags: firewall_web }
   vars:
-    ufw_proto: tcp
-    ufw_port: 80
+    pkg_list:
+      - apache2
+      - python3-apt
+      - python3-pymysql
+      - mysql-client
+    php_list:
+      - php-mysql
+      - php7.4-fpm
+      - php7.4-common
+      - php7.4-mysql
+      - php7.4-xml
+      - php7.4-xmlrpc
+      - php7.4-curl
+      - php7.4-gd
+      - php7.4-imagick
+      - php7.4-cli
+      - php7.4-dev
+      - php7.4-imap
+      - php7.4-mbstring
+      - php7.4-opcache
+      - php7.4-redis
+      - php7.4-soap
+      - php7.4-zip
+      - php7.4-intl
+      - libapache2-mod-php
+
+- name: Set DB server
+  hosts: db
+  roles:
+    - { role: mysql, tags: mysql_db }
+  vars:
+    mysql_pkg_list:
+      - python3-pymysql
+      - mysql-server
+      - mysql-client
+
+    mysql_root_password: dkagh1.
+    mysql_user_password: dkagh1.
+
+    mysql_port: 3306
+
+    webserver_ip: 192.168.56.33

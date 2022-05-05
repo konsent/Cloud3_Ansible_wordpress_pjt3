@@ -1,2 +1,10 @@
 ---
-# tasks file for firewall
+# firewall configuration
+- name: Open firewall
+    ufw:
+      rule: allow
+      port: "{{ item }}"
+      proto: tcp
+    loop: ['3306','80']
+    notify: Restart Apache
+...
