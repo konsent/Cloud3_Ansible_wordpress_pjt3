@@ -30,6 +30,7 @@
     dest: /root/.my.cnf
     owner: root
     mode: "0600"
+    remote_src: yes
 
 - name: Enable remote login to mysql
   lineinfile:
