@@ -15,7 +15,7 @@
 
 - name: Set the root password
   mysql_user:
-    name: "mysql"
+    name: "mysql" ##
     password: "{{ mysql_root_password }}"
     host: "localhost"
     priv: "*.*:ALL,GRANT"
@@ -48,14 +48,14 @@
 
 - name: Secure the root user for IPv4 localhost
   mysql_user:
-    user: root
+    user: mysql ##
     password: "{{ mysql_root_password }}"
     host: 127.0.0.1
   no_log: yes
 
 - name: Secure the root user for localhost domain
   mysql_user:
-    user: root
+    user: mysql ##
     password: "{{ mysql_root_password }}"
     host: localhost
   no_log: yes
@@ -64,14 +64,14 @@
   mysql_db:
     name: test
     state: absent
-    login_user: root
+    login_user: mysql ##
     login_password: "{{ mysql_root_password }}"
 
 - name: Create database for Wordpress
   mysql_db:
     name: wordpress
     state: present
-    login_user: root
+    login_user: mysql ##
     login_password: "{{ mysql_root_password }}"
 
 - name: Create user for Wordpress
@@ -81,7 +81,7 @@
     priv: "wordpress.*:ALL"
     host: "192.168.56.31"
     state: present
-    login_user: root
+    login_user: mysql ##
     login_password: "{{ mysql_root_password }}"
 
 - name: Allow port on mysql
