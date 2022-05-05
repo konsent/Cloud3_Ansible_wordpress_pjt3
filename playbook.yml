@@ -1,0 +1,10 @@
+---
+- name: main server
+  hosts: main
+  roles:
+    - { role: terraform, tags: terraform_main }
+    - { role: apache, tags: apache_main }
+    - { role: firewall, tags: firewall_main }
+  vars:
+    ufw_proto: tcp
+    ufw_port: 80

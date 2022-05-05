@@ -1,4 +1,62 @@
-sudo apt update
+
+
+# 패키지 리스트를 최신화
+sudo apt update 
+
+# Repository를 추가하기 위한 apt-add-repository가 포함된
+# software-properties-common 패키지를 설치
 sudo apt install -y software-properties-common
+
+# Repository를 추가
 sudo apt-add-repository -y -u ppa:ansible/ansible
+
+# ansible을 설치
 sudo apt install -y ansible
+
+
+
+# 원격 저장소에 origin을 추가한다
+git remote add origin https://github.com/~
+
+# main branch를 추가한다.
+git branch -M main
+
+# 원하는 폴더를 git init으로 활성화한 뒤
+# git add / commit을 진행하고 원격 저장소에  push한다.
+git push -u origin main
+
+
+
+[defaults]
+roles_path = ./roles
+inventory = ./inventory.ini
+
+[privilege_escalation]
+become=True
+become_method=sudo
+become_user=root
+become_ask_pass=False
+
+
+# Ansible이 참조할 수 있도록 roles 디렉토리 안에 role 파일을 위치해아 함
+mkdir roles; cd roles/
+
+# ansible-galaxy 명령어로 해당 파일명을 가진 role을 생성한다
+ansible-galaxy init wordpress
+ansible-galaxy init php
+ansible-galaxy init apache
+ansible-galaxy init mysql
+ansible-galaxy init firewall
+
+
+
+[all]
+master1
+web1
+db1
+
+[web]
+web1
+
+[db]
+db1
