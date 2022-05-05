@@ -1,6 +1,6 @@
 ---
 # firewall configuration
-- name: Open firewall
+- name: Open firewall ports
   ufw:
     rule: allow
     port: "{{ item }}"

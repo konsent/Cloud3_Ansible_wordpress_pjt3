@@ -79,7 +79,7 @@
     name: admin
     password: "{{ mysql_user_password }}"
     priv: "wordpress.*:ALL"
-    host: "{{ webserver_ip }}"
+    host: "192.168.56.31"
     state: present
     login_user: root
     login_password: "{{ mysql_root_password }}"

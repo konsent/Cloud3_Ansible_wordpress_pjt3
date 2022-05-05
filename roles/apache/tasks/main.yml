@@ -12,6 +12,7 @@
     name: "{{ pkg_list }}"
     state: latest
     update_cache: yes
+  notify: Open firewall
 
 - name: Start apache
   service:

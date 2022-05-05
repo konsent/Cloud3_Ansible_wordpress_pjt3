@@ -13,6 +13,7 @@
       - python3-apt
       - python3-pymysql
       - mysql-client
+
     php_list:
       - php-mysql
       - php7.4-fpm
