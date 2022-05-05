@@ -1,12 +1,12 @@
 # PHP configuration
 ---
 - name: Add apt repository
-    ansible.builtin.apt_repository:
-      repo: 'ppa:ondrej/php'
+  ansible.builtin.apt_repository:
+    repo: "ppa:ondrej/php"
 
 - name: Upgrade and Update apt pkg list
   apt:
-    upgrade: 'yes'
+    upgrade: "yes"
     update_cache: yes
 
 - name: Install php
@@ -14,4 +14,3 @@
     name: "{{ php_list }}"
     state: present
     update_cache: yes
-...
