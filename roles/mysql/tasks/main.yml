@@ -45,6 +45,8 @@
     user: ""
     host_all: true
     state: absent
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
 
 - name: Secure the root user for IPv4 localhost
   mysql_user:
