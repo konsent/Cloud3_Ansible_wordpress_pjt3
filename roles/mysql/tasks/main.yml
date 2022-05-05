@@ -1,11 +1,11 @@
 ---
 # mysql configuration
 - name: Install mysql packages
-      apt:
-        name: "{{ mysql_pkg_list }}"
-        update_cache: yes
-        cache_valid_time: 3600
-        state: latest
+  apt:
+    name: "{{ mysql_pkg_list }}"
+    update_cache: yes
+    cache_valid_time: 3600
+    state: latest
 
 - name: Start and enable mysql service
   service:
@@ -40,13 +40,11 @@
   notify:
     - Restart mysql
 
-- name: Mysql_secure_installation
-  block:
-    - name: Delete anonymous user
-      mysql_user:
-        user: ""
-        host_all: true
-        state: absent
+- name: Delete anonymous user
+  mysql_user:
+    user: ""
+    host_all: true
+    state: absent
 
 - name: Secure the root user for IPv4 localhost
   mysql_user:
@@ -69,14 +67,12 @@
     login_user: root
     login_password: "{{ mysql_root_password }}"
 
-- name: Create database and user for Wordpress
-  block:
-    - name: Create database for Wordpress
-      mysql_db:
-        name: wordpress
-        state: present
-        login_user: root
-        login_password: "{{ mysql_root_password }}"
+- name: Create database for Wordpress
+  mysql_db:
+    name: wordpress
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
 
 - name: Create user for Wordpress
   mysql_user:
@@ -93,4 +89,3 @@
     port: "{{ mysql_port }}"
     proto: tcp
     rule: allow
-...
