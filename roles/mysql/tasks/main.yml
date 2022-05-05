@@ -15,9 +15,9 @@
 
 - name: Set the root password
   mysql_user:
-    name: "root"
+    name: "mysql"
     password: "{{ mysql_root_password }}"
-    host: "192.168.56.30"
+    host: "localhost"
     priv: "*.*:ALL,GRANT"
     state: present
     login_unix_socket: /var/run/mysqld/mysqld.sock
