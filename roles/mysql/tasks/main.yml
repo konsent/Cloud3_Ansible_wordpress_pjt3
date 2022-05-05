@@ -15,7 +15,7 @@
 
 - name: Set the root password
   mysql_user:
-    name: root
+    name: "root"
     password: "{{ mysql_root_password }}"
     host: "localhost"
     priv: "*.*:ALL,GRANT"
@@ -43,10 +43,8 @@
 - name: Delete anonymous user
   mysql_user:
     user: ""
-    host_all: true
+    host_all: yes
     state: absent
-    login_user: root
-    login_password: "{{ mysql_root_password }}"
 
 - name: Secure the root user for IPv4 localhost
   mysql_user:
