@@ -8,6 +8,10 @@
     - { role: wordpress, tags: wordpress_web }
     - { role: firewall, tags: firewall_web }
   vars:
+    mysql_pkg_list:
+      - python3-pymysql
+      - mysql-server
+      - mysql-client
     pkg_list:
       - apache2
       - python3-apt
