@@ -63,6 +63,7 @@
     password: "{{ mysql_root_password }}"
     host: localhost
   no_log: yes
+  tags: db1
 
 - name: Remove test databse
   mysql_db:
@@ -70,6 +71,7 @@
     state: absent
     login_user: admin ##
     login_password: "{{ mysql_root_password }}"
+  tags: db1
 
 - name: Create database for Wordpress
   mysql_db:
@@ -77,6 +79,7 @@
     state: present
     login_user: admin ##
     login_password: "{{ mysql_root_password }}"
+  tags: db1
 
 - name: Create user for Wordpress
   mysql_user:
@@ -87,9 +90,11 @@
     state: present
     login_user: admin ##
     login_password: "{{ mysql_root_password }}"
+  tags: db1
 
 - name: Allow port on mysql
   ufw:
     port: "{{ mysql_port }}"
     proto: tcp
     rule: allow
+  tags: db1
