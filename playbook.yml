@@ -43,8 +43,8 @@
   vars:
     mysql_pkg_list:
       - python3-pymysql
-      - mysql-server
-      - mysql-client
+      # - mysql-server
+      # - mysql-client
 
     mysql_root_password: dkagh1.
     mysql_user_password: dkagh1.
@@ -52,3 +52,4 @@
     mysql_port: 3306
 
     webserver_ip: 192.168.56.33
+git
