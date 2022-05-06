@@ -1,9 +1,6 @@
 ---
 # mysql configuration
-- name: I dont know what it is
-  provisioner:
-    name: ansible
-    log: true
+
 - name: Re-configure dpkg module before start tasks
   command: sudo dpkg --configure -a
 
@@ -65,7 +62,7 @@
     user: admin ##
     password: "{{ mysql_root_password }}"
     host: localhost
-  no_log: yes
+  log: true
 
 - name: Remove test databse
   mysql_db:
