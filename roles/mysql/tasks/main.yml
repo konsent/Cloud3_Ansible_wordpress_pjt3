@@ -62,7 +62,7 @@
     user: admin ##
     password: "{{ mysql_root_password }}"
     host: localhost
-  log: true
+    log: true
 
 - name: Remove test databse
   mysql_db:
