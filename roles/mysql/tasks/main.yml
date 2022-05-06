@@ -57,6 +57,7 @@
     password: "{{ mysql_root_password }}"
     host: 127.0.0.1
   no_log: yes
+  ignore_errors: yes
 
 - name: Secure the root user for localhost domain
   mysql_user:
@@ -65,6 +66,7 @@
     host: localhost
   no_log: yes
   tags: db1
+  ignore_errors: yes
 
 - name: Remove test databse
   mysql_db:
