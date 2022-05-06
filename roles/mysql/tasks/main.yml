@@ -4,6 +4,29 @@
 - name: Re-configure dpkg module before start tasks
   command: sudo dpkg --configure -a
 
+- name: Download MySQL repository
+  get_url:
+    url: https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb
+    dest: .
+
+- name: Install the repository
+  dpkg_selections:
+    name: mysql-apt-config_0.8.12-1_all.deb
+    selection: install
+
+- name: Update apt pkg list
+  apt:
+    update_cache: yes
+
+- name: import the missing gpg key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 467B942D3A79BD29
+
+- name: Update apt pkg list
+  apt:
+    update_cache: yes
+
 - name: Install mysql packages
   apt:
     name: "{{ mysql_pkg_list }}"
