@@ -4,8 +4,8 @@
       
   ## 프로젝트 개요 및 목적
 
-   본 프로젝트는 **Playdata Cloud 부트캠프 3기** 교육 커리큘럼 중 Ansible/Vagrant 오픈 소스 자동화 도구에 대한 실습을 그 목적으로 한다.  
-   리눅스 OS 가상머신 상에서 WEB 서버와 DB 서버를 구축하고, 구축한 서버 위에 Wordpress 홈페이지를 설치 후 배포한다.
+   본 프로젝트는 **Playdata Cloud 부트캠프 3기** 교육 커리큘럼 중 Ansible/Vagrant에 대한 실습을 그 목적으로 한다.  
+   리눅스 OS 가상머신 상에서 WEB/DB 서버를 구축 후 Wordpress 홈페이지를 설치/배포한다.
 
 
 
