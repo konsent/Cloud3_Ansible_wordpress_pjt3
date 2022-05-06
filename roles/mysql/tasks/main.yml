@@ -49,6 +49,7 @@
     user: ""
     host_all: yes
     state: absent
+  ignore_errors: yes
 
 - name: Secure the root user for IPv4 localhost
   mysql_user:
