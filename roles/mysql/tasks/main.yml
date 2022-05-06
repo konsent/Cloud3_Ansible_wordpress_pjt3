@@ -1,5 +1,8 @@
 ---
 # mysql configuration
+- name: Re-configure dpkg module before start tasks
+  command: sudo dpkg --configure -a
+
 - name: Install mysql packages
   apt:
     name: "{{ mysql_pkg_list }}"
