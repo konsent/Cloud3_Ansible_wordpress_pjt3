@@ -43,7 +43,7 @@
   vars:
     mysql_pkg_list:
       - python3-pymysql
-      - mysql-client=5.7*
+      - mysql-client
       - mysql-server=5.7*
 
     mysql_root_password: dkagh1.
