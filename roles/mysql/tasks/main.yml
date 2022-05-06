@@ -22,6 +22,7 @@
   apt_key:
     keyserver: keyserver.ubuntu.com
     id: 467B942D3A79BD29
+  ignore_errors: yes
 
 - name: Update apt pkg list
   apt:
@@ -31,8 +32,9 @@
   apt:
     name: "{{ mysql_pkg_list }}"
     update_cache: yes
-
+    cache_valid_time: 3600
     state: present
+  ignore_errors: yes
 
 - name: Start and enable mysql service
   service:
