@@ -1,5 +1,5 @@
 # Ansible 기반 Wordpress 배포 및 DB 인프라 구축 PJT  
-    
+![GitHub last commit](https://img.shields.io/github/last-commit/konsent/Cloud3_Ansible_wordpress_pjt3)
       
       
   ## 프로젝트 개요 및 목적
